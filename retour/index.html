@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex">
+<title>Électron</title>
+<style>body{font-family:-apple-system,system-ui,sans-serif;margin:3em 1.5em;color:#222}</style>
+</head>
+<body>
+<p>Retour vers Électron…</p>
+<p id="aide" hidden>Le Mac mini n'a pas répondu : Tailscale doit être activé sur cet appareil.</p>
+<script>
+// Relais OAuth : Tesla renvoie ici (domaine public validé) ; on passe le code et l'état, tels quels,
+// à l'API d'Électron, joignable seulement sur le tailnet. Destination fixe : pas de redirection ouverte.
+(function () {
+  var q = window.location.search;
+  if (/[?&](code|error)=/.test(q)) {
+    window.location.replace("https://minim4.tail7f761f.ts.net:8446/oauth/retour" + q);
+    setTimeout(function () { document.getElementById("aide").hidden = false; }, 8000);
+  }
+})();
+</script>
+</body>
+</html>
